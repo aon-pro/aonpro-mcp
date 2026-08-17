@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.aonpro-dev/aonpro-mcp",
+  "title": "AON — Agent Offer Network",
+  "description": "Real, buyable product and service offers — live pricing and trackable links for any MCP agent.",
+  "version": "0.3.0",
+  "websiteUrl": "https://docs.aon.pro/mcp",
+  "repository": {
+    "url": "https://github.com/aonpro-dev/aonpro-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.aon.pro/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <AON API key>. Free keys at https://developer.aon.pro; a shared demo key for instant trial is published at https://docs.aon.pro/mcp/quickstart.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

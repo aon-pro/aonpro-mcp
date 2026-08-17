@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "aon": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://api.aon.pro/v1/mcp",
+        "--header",
+        "Authorization:${AON_AUTH}"
+      ],
+      "env": {
+        "AON_AUTH": "Bearer YOUR_AON_API_KEY"
+      }
+    }
+  }
+}
