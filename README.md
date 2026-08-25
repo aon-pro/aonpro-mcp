@@ -17,6 +17,8 @@ the [Agent Offer Network](https://www.aon.pro).
 | `aon_search_offers` | Search offers by natural-language intent. Arguments are an [AgentOffer Query](https://github.com/agentoffernetwork/protocol) request object — the same shape as the REST API. Returns offers with pricing, a tracking link each, and an `engagement` block of pre-validated follow-up suggestions the agent can act on. |
 | `aon_resolve_category` | Turn free text ("hiking boots", "team chat software") into AON Taxonomy v1 category ids — the model never has to memorize or invent them. |
 | `aon_get_category_schema` | Get the decision factors buyers weigh inside a category, to ask the right clarifying question before searching. |
+| `aon_submit_feedback` | Record an explicit "dismissed" / "not interested" from the user on an offer — never inferred from silence. *Early scaffold: the call is acknowledged with success, but feedback is not persisted yet; the workflow behind it is rolling out.* |
+| `aon_manage_watch` | Restore (`watch`) or cancel (`unwatch`) the default watch on an offer or category when the user explicitly asks. *Early scaffold: acknowledged with success, watch state not persisted yet.* |
 
 Design notes agents benefit from:
 
