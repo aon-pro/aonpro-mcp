@@ -86,7 +86,7 @@ in the [Developer Portal](https://developer.aon.pro).
 ## Registry manifest
 
 [`server.json`](./server.json) is the MCP registry manifest for this server
-(schema `2025-12-11`, namespace `io.github.aonpro-dev`).
+(schema `2025-12-11`, namespace `pro.aon` — DNS-verified against the aon.pro domain).
 
 ## Related repositories
 

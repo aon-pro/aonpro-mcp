@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.aonpro-dev/aonpro-mcp",
+  "name": "pro.aon/mcp",
   "title": "AON — Agent Offer Network",
   "description": "Real, buyable product and service offers — live pricing and trackable links for any MCP agent.",
   "version": "0.3.0",
