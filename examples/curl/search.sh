@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Minimal AON MCP search. Set AON_API_KEY first:
-#   free keys:        https://developer.aon.pro
-#   shared demo key:  https://docs.aon.pro/mcp/quickstart
+# Minimal AON MCP search. Set AON_API_KEY to an issued live key from:
+#   https://developer.aon.pro
 set -euo pipefail
 
 : "${AON_API_KEY:?Set AON_API_KEY (see https://docs.aon.pro/mcp/quickstart)}"

@@ -3,7 +3,7 @@
   "name": "pro.aon/mcp",
   "title": "AON — Agent Offer Network",
   "description": "Real, buyable product and service offers — live pricing and trackable links for any MCP agent.",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "websiteUrl": "https://docs.aon.pro/mcp",
   "repository": {
     "url": "https://github.com/aonpro-dev/aonpro-mcp",
@@ -17,7 +17,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer <AON API key>. Free keys at https://developer.aon.pro; a shared demo key for instant trial is published at https://docs.aon.pro/mcp/quickstart.",
+          "description": "Bearer <AON API key>. Use an issued live key from https://developer.aon.pro; no credential is embedded in this manifest.",
           "isRequired": true,
           "isSecret": true
         }

@@ -12,5 +12,6 @@ Merge [`claude_desktop_config.json`](./claude_desktop_config.json) into:
 | macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 
-Replace `YOUR_AON_API_KEY` (free keys: <https://developer.aon.pro>; shared
-demo key: <https://docs.aon.pro/mcp/quickstart>), then restart Claude Desktop.
+Create an application and mint an issued live key at
+<https://developer.aon.pro>, replace `YOUR_AON_API_KEY` only in your local
+configuration, then restart Claude Desktop.

@@ -6,17 +6,32 @@ the [Agent Offer Network](https://www.aon.pro).
 
 - **Endpoint**: `POST https://api.aon.pro/v1/mcp`
 - **Transport**: Streamable HTTP (stateless JSON-RPC 2.0 — no SSE, no session handshake)
-- **Auth**: `Authorization: Bearer <AON API key>` — free keys at the [Developer Portal](https://developer.aon.pro)
-- **Try it now**: a shared public demo key is published in the [Quick Start](https://docs.aon.pro/mcp/quickstart) — one curl, no signup
+- **Auth**: `Authorization: Bearer <AON API key>` — use an issued live key from the [Developer Portal](https://developer.aon.pro)
+- **Quick Start**: run the curl or client examples with your issued key; credentials are never embedded in these public assets
 - **Docs**: [docs.aon.pro/mcp](https://docs.aon.pro/mcp)
 
 ## Tools
+
+The Hosted AON endpoint currently lists five tools. Protocol v1.0 names the
+four base tools below; `aon_get_category_schema` is an optional Hosted
+category-guidance extension, not a portable Protocol v1.0 guarantee. Discover
+it through `tools/list` before calling it.
+
+- `aon_search_offers` — Search offers by natural-language intent; every result
+  carries live pricing, a tracking link, and pre-validated follow-up suggestions.
+- `aon_resolve_category` — Turn free text into AON Taxonomy v1 category ids.
+- `aon_get_category_schema` — Optional Hosted extension: decision factors for a
+  resolved category id, to ask the right clarifying question before searching.
+- `aon_submit_feedback` — Record an explicit "dismissed" / "not interested" on an
+  offer (early scaffold: acknowledged, not persisted yet).
+- `aon_manage_watch` — Restore or cancel the default watch on an offer or
+  category on explicit request (early scaffold: acknowledged, not persisted yet).
 
 | Tool | What it does |
 |------|--------------|
 | `aon_search_offers` | Search offers by natural-language intent. Arguments are an [AgentOffer Query](https://github.com/agentoffernetwork/protocol) request object — the same shape as the REST API. Returns offers with pricing, a tracking link each, and an `engagement` block of pre-validated follow-up suggestions the agent can act on. |
 | `aon_resolve_category` | Turn free text ("hiking boots", "team chat software") into AON Taxonomy v1 category ids — the model never has to memorize or invent them. |
-| `aon_get_category_schema` | Get the decision factors buyers weigh inside a category, to ask the right clarifying question before searching. |
+| `aon_get_category_schema` | Optional Hosted extension: return decision factors for an already resolved category id, to ask the right clarifying question before searching. Its standalone result does not add `decision_factors` to the Query request or response. |
 | `aon_submit_feedback` | Record an explicit "dismissed" / "not interested" from the user on an offer — never inferred from silence. *Early scaffold: the call is acknowledged with success, but feedback is not persisted yet; the workflow behind it is rolling out.* |
 | `aon_manage_watch` | Restore (`watch`) or cancel (`unwatch`) the default watch on an offer or category when the user explicitly asks. *Early scaffold: acknowledged with success, watch state not persisted yet.* |
 
@@ -53,8 +68,9 @@ curl -s -X POST https://api.aon.pro/v1/mcp \
   }'
 ```
 
-No key yet? Copy the shared demo key from the
-[Quick Start](https://docs.aon.pro/mcp/quickstart) into `$AON_API_KEY`.
+No key yet? Create an application in the
+[Developer Portal](https://developer.aon.pro), mint an issued live key, and
+store it in `$AON_API_KEY`.
 
 ## Client setup
 
@@ -78,7 +94,7 @@ model can read the retry advice. Details:
 
 ## Monetization & attribution
 
-Every offer carries a tracked destination link (`action.payload.target`).
+Every offer carries a tracked destination link (`action.payload.url`).
 Surface it verbatim — clicks and conversions attribute to your API key's
 application, which is the basis for developer revenue share. Reporting lives
 in the [Developer Portal](https://developer.aon.pro).
