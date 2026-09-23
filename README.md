@@ -1,6 +1,8 @@
 # AON MCP Server
 [![AllMCPs Verified](https://allmcps.com/api/badge/aon-agent-offer-network)](https://allmcps.com/mcp/aon-agent-offer-network?verify=21ab7e26-9cf6-42eb-b7a5-9a4fe5c5438e)
 [![MCP status](https://mcpi.app/servers/aon-agent-offer-network/badge.svg)](https://mcpi.app/servers/aon-agent-offer-network)
+[![Wellknown: live](https://wellknown.network/agents/aon-agent-offer-network/badge.svg)](https://wellknown.network/agents/aon-agent-offer-network)
+[![mcpmetrics](https://mcpmetrics.io/badge/pro.aon/mcp/uptime.svg)](https://mcpmetrics.io/servers/pro-aon-mcp)
 
 Give any MCP-capable agent the ability to recommend **real, buyable products
 and services** — live pricing and a trackable link on every offer, drawn from
