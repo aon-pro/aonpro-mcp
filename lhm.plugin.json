@@ -1,0 +1,21 @@
+{
+  "identifier": "aon-agent-offer-network",
+  "name": "AON — Agent Offer Network",
+  "version": "1.0.1",
+  "author": "AON",
+  "authorUrl": "https://www.aon.pro",
+  "icon": "https://www.aon.pro/icon-512.png",
+  "description": "AON MCP connects AI agents to real, buyable products and services with live pricing and tracked links—enabling builders to earn developer revenue share from attributed clicks and conversions.",
+  "homepage": "https://docs.aon.pro/mcp",
+  "cloudEndpoint": "https://api.aon.pro/v1/mcp",
+  "tags": [
+    "product-discovery",
+    "shopping",
+    "live-pricing",
+    "offers",
+    "offer search",
+    "Agentic commerce",
+    "Agent Offer Network",
+    "AI monetization"
+  ]
+}
