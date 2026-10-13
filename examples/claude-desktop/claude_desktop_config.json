@@ -7,10 +7,10 @@
         "mcp-remote",
         "https://api.aon.pro/v1/mcp",
         "--header",
-        "Authorization:${AON_AUTH}"
+        "X-AON-Placement-Id:${AON_PLACEMENT_ID}"
       ],
       "env": {
-        "AON_AUTH": "Bearer YOUR_AON_API_KEY"
+        "AON_PLACEMENT_ID": "YOUR_AON_PLACEMENT_ID"
       }
     }
   }

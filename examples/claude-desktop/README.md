@@ -2,8 +2,8 @@
 
 Claude Desktop cannot attach custom HTTP headers to a remote server, so the
 config bridges through [`mcp-remote`](https://www.npmjs.com/package/mcp-remote)
-(requires Node.js). The `Authorization` value rides an env var so it survives
-argument splitting on every platform.
+(requires Node.js). The `X-AON-Placement-Id` value rides an env var so it
+survives argument splitting on every platform.
 
 Merge [`claude_desktop_config.json`](./claude_desktop_config.json) into:
 
@@ -12,6 +12,5 @@ Merge [`claude_desktop_config.json`](./claude_desktop_config.json) into:
 | macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 
-Create an application and mint an issued live key at
-<https://developer.aon.pro>, replace `YOUR_AON_API_KEY` only in your local
-configuration, then restart Claude Desktop.
+Create an application and a placement at <https://developer.aon.pro>, then copy
+the placement ID (`plc_…`). Replace `YOUR_AON_PLACEMENT_ID` with it, then restart Claude Desktop.

@@ -3,10 +3,19 @@
   "name": "pro.aon/mcp",
   "title": "AON — Agent Offer Network",
   "description": "Real, buyable product and service offers — live pricing and trackable links for any MCP agent.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "websiteUrl": "https://docs.aon.pro/mcp",
+  "icons": [
+    {
+      "src": "https://docs.aon.pro/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
   "repository": {
-    "url": "https://github.com/aonpro-dev/aonpro-mcp",
+    "url": "https://github.com/aon-pro/aonpro-mcp",
     "source": "github",
     "id": "1336677687"
   },
@@ -16,10 +25,10 @@
       "url": "https://api.aon.pro/v1/mcp",
       "headers": [
         {
-          "name": "Authorization",
-          "description": "Bearer <AON API key>. Use an issued live key from https://developer.aon.pro; no credential is embedded in this manifest.",
-          "isRequired": true,
-          "isSecret": true
+          "name": "X-AON-Placement-Id",
+          "description": "Recommended. Your AON placement ID (plc_…) from https://developer.aon.pro; it routes attribution and earnings to your application and is safe to share in client configuration. Without it, search runs in anonymous mode and earns nothing.",
+          "isRequired": false,
+          "isSecret": false
         }
       ]
     }

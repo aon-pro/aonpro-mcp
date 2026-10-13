@@ -4,14 +4,18 @@
 [![Wellknown: live](https://wellknown.network/agents/aon-agent-offer-network/badge.svg)](https://wellknown.network/agents/aon-agent-offer-network)
 [![mcpmetrics](https://mcpmetrics.io/badge/pro.aon/mcp/uptime.svg)](https://mcpmetrics.io/servers/pro-aon-mcp)
 
+<p align="center">
+  <img src="assets/aon-mcp-icon.png" width="128" height="128" alt="AON">
+</p>
+
 Give any MCP-capable agent the ability to recommend **real, buyable products
 and services** — live pricing and a trackable link on every offer, drawn from
 the [Agent Offer Network](https://www.aon.pro).
 
 - **Endpoint**: `POST https://api.aon.pro/v1/mcp`
 - **Transport**: Streamable HTTP (stateless JSON-RPC 2.0 — no SSE, no session handshake)
-- **Auth**: `Authorization: Bearer <AON API key>` — use an issued live key from the [Developer Portal](https://developer.aon.pro)
-- **Quick Start**: run the curl or client examples with your issued key; credentials are never embedded in these public assets
+- **Placement (recommended)**: send your placement ID in the `X-AON-Placement-Id` header — create one in the [Developer Portal](https://developer.aon.pro). Without it, search still works in anonymous mode, but earnings cannot be attributed to your application
+- **Quick Start**: run the curl or client examples with your placement ID
 - **Docs**: [docs.aon.pro/mcp](https://docs.aon.pro/mcp)
 
 ## Tools
@@ -42,8 +46,9 @@ it through `tools/list` before calling it.
 Design notes agents benefit from:
 
 - **Forgiving by design** — invalid values never fail a search; they are
-  treated as "not sent" and corrected in `extra.hints[]`. Only bad auth,
-  invalid JSON, a missing `intent.content`, or an oversized body hard-fail.
+  treated as "not sent" and corrected in `extra.hints[]`. Only a malformed, unknown or inactive placement,
+  invalid JSON, a missing `intent.content`, or an oversized body hard-fail. A missing placement is not
+  an error: the call runs in anonymous mode.
 - **Relevance-gated** — an empty result list is a real answer, never filler.
 - **Guidance loop** — follow-up suggestions carry an RFC 7386 `request_patch`
   that merges straight into the next call, plus an `origin` to echo back for
@@ -54,7 +59,7 @@ Design notes agents benefit from:
 ```bash
 curl -s -X POST https://api.aon.pro/v1/mcp \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AON_API_KEY" \
+  -H "X-AON-Placement-Id: $AON_PLACEMENT_ID" \
   -d '{
     "jsonrpc": "2.0",
     "method": "tools/call",
@@ -72,9 +77,16 @@ curl -s -X POST https://api.aon.pro/v1/mcp \
   }'
 ```
 
-No key yet? Create an application in the
-[Developer Portal](https://developer.aon.pro), mint an issued live key, and
-store it in `$AON_API_KEY`.
+No placement yet? Create an application and a placement in the
+[Developer Portal](https://developer.aon.pro), and store the placement ID
+(`plc_…`) in `$AON_PLACEMENT_ID`. It identifies your placement and is safe to
+use in client configuration.
+
+To just try the endpoint, drop the `X-AON-Placement-Id` header: the call runs in
+**anonymous mode** through AON's shared default placement, the response carries
+`extra.identity.mode="anonymous"`, and it **earns nothing** — clicks and
+conversions from anonymous calls cannot be attributed to your application,
+including retroactively. Configure your placement ID before real traffic.
 
 ## Client setup
 
@@ -90,16 +102,16 @@ Ready-to-paste configs live in [`examples/`](./examples):
 
 ## Rate limits
 
-`/v1/mcp` allows **60 `tools/call` requests per minute per key**; handshake
+`/v1/mcp` allows **60 `tools/call` requests per minute per application**; handshake
 calls (`initialize`, `tools/list`, `notifications/*`) are never counted. An
-over-limit `tools/call` returns HTTP 200 with JSON-RPC error `-32000` so the
+over-limit `tools/call` returns HTTP 429 with a `Retry-After` header and JSON-RPC error `-32000` so the
 model can read the retry advice. Details:
 [Rate Limits & FAQ](https://docs.aon.pro/mcp/faq).
 
 ## Monetization & attribution
 
 Every offer carries a tracked destination link (`action.payload.url`).
-Surface it verbatim — clicks and conversions attribute to your API key's
+Surface it verbatim — clicks and conversions attribute to your placement's
 application, which is the basis for developer revenue share. Reporting lives
 in the [Developer Portal](https://developer.aon.pro).
 

@@ -4,7 +4,7 @@
       "type": "http",
       "url": "https://api.aon.pro/v1/mcp",
       "headers": {
-        "Authorization": "Bearer YOUR_AON_API_KEY"
+        "X-AON-Placement-Id": "YOUR_AON_PLACEMENT_ID"
       }
     }
   }
